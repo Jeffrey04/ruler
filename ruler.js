@@ -111,7 +111,7 @@ ruler.library.register('string.Concat', function(link) {
     }
 })
 
-ruler.library.register('string.Concat_Fiels', function(link) {
+ruler.library.register('string.Concat_Fields', function(link) {
     var keys = _.tail(arguments)
 
     return ruler._get('string.Concat').apply(this, [link].concat(_.map(keys,
