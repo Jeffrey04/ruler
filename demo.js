@@ -96,6 +96,28 @@ var demo = {
                 return rule(context)
             }
         ],
+        Greater_Than: [
+            function() {
+                context = {},
+                rule = ruler.parse(['condition.Greater_Than', 1, ['basic.Value', 2]])
+
+                return rule(context)
+            },
+            function() {
+                context = {},
+                rule = ruler.parse(['condition.Greater_Than', ['basic.Value', 2], 1])
+
+                return rule(context)
+            }
+        ],
+        Greater_Than_Equal: [
+            function() {
+                context = {},
+                rule = ruler.parse(['condition.Greater_Than_Equal', 1, 1])
+
+                return rule(context)
+            }
+        ],
         In: [
             function() {
                 context = {foo: 'bar'}
@@ -139,6 +161,28 @@ var demo = {
 
                 return rule(context)
             },
+        ],
+        Less_Than: [
+            function() {
+                context = {},
+                rule = ruler.parse(['condition.Less_Than', 1, ['basic.Value', 2]])
+
+                return rule(context)
+            },
+            function() {
+                context = {},
+                rule = ruler.parse(['condition.Less_Than', ['basic.Value', 2], 1])
+
+                return rule(context)
+            }
+        ],
+        Less_Than_Equal: [
+            function() {
+                context = {},
+                rule = ruler.parse(['condition.Less_Than_Equal', 1, 1])
+
+                return rule(context)
+            }
         ]
     },
     string: {
