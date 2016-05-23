@@ -141,6 +141,22 @@ Usually returns either true or false
 
 Returns `True` if and only if `$alpha` is equivalent to `$beta`.
 
+#### condition.Greater_Than
+
+```
+["condition.Greater_Than", $alpha, $beta]
+```
+
+Returns `True` if and only if `$alpha` is greater than `$beta`.
+
+#### condition.Greater_Than_Equal
+
+```
+["condition.Greater_Than_Equal", $alpha, $beta]
+```
+
+Returns `True` if and only if `$alpha` is greater than or equal to `$beta`.
+
 #### condition.In
 
 ```
@@ -165,6 +181,22 @@ Returns `True` if `$alpha` is `null`
 
 Returns `True` if `$alpha` is `True`
 
+#### condition.Less_Than
+
+```
+["condition.Less_Than", $alpha, $beta]
+```
+
+Returns `True` if and only if `$alpha` is less than `$beta`.
+
+#### condition.Less_Than_Equal
+
+```
+["condition.Less_Than_Equal", $alpha, $beta]
+```
+
+Returns `True` if and only if `$alpha` is less than or equal to `$beta`.
+
 ### String operations
 
 Some basic string operations
@@ -188,6 +220,8 @@ A short hand for
 ```
 ["string.Concat", $link, ["string.Field", $key1], ["string.Field", $key2], ...]
 ```
+
+Note: `$key1`, `$key2` etc.
 
 #### string.Lower
 
