@@ -1,0 +1,12 @@
+{
+  "name": "ruler",
+  "version": "0.1.0",
+  "main": "ruler.js",
+  "repository": "https://github.com/Jeffrey04/ruler",
+  "author": "Jeffrey04 <mycyberpet@yahoo.com>",
+  "license": "BSD",
+  "private": false,
+  "dependencies": {
+    "lodash": "^4.17.19"
+  }
+}
