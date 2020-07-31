@@ -62,6 +62,12 @@ ruler.parse = function parse(sequence, _result) {
   return to_return;
 };
 
+ruler.library.register("array.Length", (arg) => {
+  return function (context) {
+    return ruler.library.compute(arg, context).length;
+  };
+});
+
 ruler.library.register("basic.Context", function (context_sub, arg) {
   return function (context) {
     return ruler.library.compute(
