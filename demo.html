@@ -1,74 +1,88 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <title>Ruler Demo</title>
     <style>
-    .demo, .result {
-        background-color: #EEE;
+      .demo,
+      .result {
+        background-color: #eee;
         padding: 0.5em;
-    }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Ruler Demo</h1>
 
     <div class="namespace" data-name="basic">
-        <h2>Basic functions</h2>
+      <h2>Basic functions</h2>
 
-        <h3 class="function" data-name="Context">basic.Context</h3>
+      <h3 class="function" data-name="Context">basic.Context</h3>
 
-        <h3 class="function" data-name="Field">basic.Field</h3>
+      <h3 class="function" data-name="Field">basic.Field</h3>
 
-        <h3 class="function" data-name="Value">basic.Value</h3>
+      <h3 class="function" data-name="Value">basic.Value</h3>
     </div>
 
     <div class="namespace" data-name="boolean">
-        <h2>Boolean functions</h2>
+      <h2>Boolean functions</h2>
 
-        <h3 class="function" data-name="And">boolean.And</h3>
+      <h3 class="function" data-name="And">boolean.And</h3>
 
-        <h3 class="function" data-name="Contradiction">boolean.Contradiction</h3>
+      <h3 class="function" data-name="Contradiction">boolean.Contradiction</h3>
 
-        <h3 class="function" data-name="Not">boolean.Not</h3>
+      <h3 class="function" data-name="Not">boolean.Not</h3>
 
-        <h3 class="function" data-name="Or">boolean.Or</h3>
+      <h3 class="function" data-name="Or">boolean.Or</h3>
 
-        <h3 class="function" data-name="Tautology">boolean.Tautology</h3>
+      <h3 class="function" data-name="Tautology">boolean.Tautology</h3>
     </div>
 
     <div class="namespace" data-name="condition">
-        <h2>Condition functions</h2>
+      <h2>Condition functions</h2>
 
-        <h3 class="function" data-name="Equal">condition.Equal</h3>
+      <h3 class="function" data-name="Equal">condition.Equal</h3>
 
-        <h3 class="function" data-name="Greater_Than">condition.Greater_Than</h3>
+      <h3 class="function" data-name="Greater_Than">condition.Greater_Than</h3>
 
-        <h3 class="function" data-name="Greater_Than_Equal">condition.Greater_Than_Equal</h3>
+      <h3 class="function" data-name="Greater_Than_Equal">
+        condition.Greater_Than_Equal
+      </h3>
 
-        <h3 class="function" data-name="In">condition.In</h3>
+      <h3 class="function" data-name="In">condition.In</h3>
 
-        <h3 class="function" data-name="Is_Null">condition.Is_Null</h3>
+      <h3 class="function" data-name="Is_Null">condition.Is_Null</h3>
 
-        <h3 class="function" data-name="Is_True">condition.Is_True</h3>
+      <h3 class="function" data-name="Is_True">condition.Is_True</h3>
 
-        <h3 class="function" data-name="Less_Than">condition.Less_Than</h3>
+      <h3 class="function" data-name="Less_Than">condition.Less_Than</h3>
 
-        <h3 class="function" data-name="Less_Than_Equal">condition.Less_Than_Equal</h3>
+      <h3 class="function" data-name="Less_Than_Equal">
+        condition.Less_Than_Equal
+      </h3>
     </div>
 
     <div class="namespace" data-name="string">
-        <h2>String functions</h2>
+      <h2>String functions</h2>
 
-        <h3 class="function" data-name="Concat">string.Concat</h3>
+      <h3 class="function" data-name="Concat">string.Concat</h3>
 
-        <h3 class="function" data-name="Concat_Fields">string.Concat_Fields</h3>
+      <h3 class="function" data-name="Concat_Fields">string.Concat_Fields</h3>
 
-        <h3 class="function" data-name="Lower">string.Lower</h3>
+      <h3 class="function" data-name="Lower">string.Lower</h3>
     </div>
 
-    <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
-    <script src="./ruler.js"></script>
-    <script src="./demo.js"></script>
-</body>
+    <script
+      defer
+      src="https://unpkg.com/es-module-shims@latest/dist/es-module-shims.js"
+    ></script>
+    <script type="importmap-shim">
+      {
+        "imports": {
+          "lodash": "https://cdn.jsdelivr.net/npm/lodash-es@4.17.15/lodash.min.js"
+        }
+      }
+    </script>
+    <script type="module-shim" src="./ruler.js"></script>
+    <script type="module-shim" src="./demo.js"></script>
+  </body>
 </html>

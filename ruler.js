@@ -30,8 +30,8 @@ ruler.library.compute = function (arg, context) {
 };
 
 ruler.parse = function parse(sequence, _result) {
-  result = _result || [];
-  to_return = null;
+  let result = _result || [];
+  let to_return = null;
 
   if (sequence.length > 0) {
     if (_.isArray(_.head(sequence))) {
@@ -75,9 +75,9 @@ ruler.library.register("basic.Field", function (key) {
   var _arguments = arguments;
 
   return function (context) {
-    return _.rest(_arguments)
+    return _.tail(_arguments)
       ? context[ruler.library.compute(key, context)] ||
-          ruler.library.compute(_.first(_.rest(_arguments)), context)
+          ruler.library.compute(_.first(_.tail(_arguments)), context)
       : context[ruler.library.compute(key, context)];
   };
 });
@@ -161,7 +161,7 @@ ruler.library.register("condition.Greater_Than_Equal", function (alpha, beta) {
 
 ruler.library.register("condition.In", function (alpha, values) {
   return function (context) {
-    return _.contains(values, ruler.library.compute(alpha, context));
+    return _.includes(values, ruler.library.compute(alpha, context));
   };
 });
 
