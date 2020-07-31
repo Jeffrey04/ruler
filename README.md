@@ -1,4 +1,5 @@
 # ruler
+
 A rule dsl language parser in Javascript
 
 ## ruler DSL
@@ -22,7 +23,7 @@ Unless otherwise specified, a rule can be inserted as an argument to another rul
 
 ## Pre-requisite
 
-* Underscore.js is needed
+- Underscore.js is needed
 
 ## Parsing and computing result
 
@@ -36,6 +37,18 @@ rule(context) // should yield true
 
 ## API overview
 
+### Array functions
+
+Some array related functions.
+
+#### array.Length
+
+```
+["array.Length", $argument]
+```
+
+Returns the length of a given array `$argument`.
+
 ### Basic functions
 
 Some random functions that don't fit anywhere else goes here
@@ -48,8 +61,8 @@ Some random functions that don't fit anywhere else goes here
 
 Temporarily change the context to `$context_sub`, and perform `$rule` with `$context_sub` as the new `context`
 
-* `$context_sub` *(required)*: A struct, or a rule to extract a new struct w.r.t. the original `context`
-* `$rule` *(required)*: the rule to be applied w.r.t. `$context_sub`
+- `$context_sub` _(required)_: A struct, or a rule to extract a new struct w.r.t. the original `context`
+- `$rule` _(required)_: the rule to be applied w.r.t. `$context_sub`
 
 An example:
 
@@ -66,10 +79,11 @@ print(result) # returns context['sub']['foo'], which is 'bar'
 ```
 ["basic.Field", $key, $default]
 ```
+
 Returns a field value from `context` when called.
 
-* `$key` *(required)*: is a `key` in the `context`.
-* `$default` *(optional)*: is a default value to be returned when `context[key]` does not exist.
+- `$key` _(required)_: is a `key` in the `context`.
+- `$default` _(optional)_: is a default value to be returned when `context[key]` does not exist.
 
 #### basic.Value
 
@@ -79,7 +93,7 @@ Returns a field value from `context` when called.
 
 Returns a value, regardless what is in the `context`
 
-* `$value` *(required)*: a value to return. **MAY NOT** be a sub-rule
+- `$value` _(required)_: a value to return. **MAY NOT** be a sub-rule
 
 ### Boolean operators
 
