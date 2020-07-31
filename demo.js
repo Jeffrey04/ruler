@@ -4,6 +4,16 @@ import ruler from "./ruler.js";
 
 (function () {
   var demo = {
+    array: {
+      Length: [
+        () => {
+          let context = { list: ["foo", "bar", "baz"] };
+          let rule = ruler.parse(["array.Length", ["basic.Field", "list"]]);
+
+          return rule(context);
+        },
+      ],
+    },
     basic: {
       Context: [
         function () {
