@@ -5,8 +5,7 @@
   "repository": "https://github.com/Jeffrey04/ruler",
   "author": "Jeffrey04 <mycyberpet@yahoo.com>",
   "license": "BSD",
-  "private": false,
   "dependencies": {
-    "lodash": "^4.17.19"
+    "lodash": "^4.17.21"
   }
 }
