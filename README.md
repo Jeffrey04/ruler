@@ -4,30 +4,26 @@ A rule dsl language parser in Javascript
 
 ## ruler DSL
 
-The mini-language is very much inspired by LISP, as everything is represented by a list of string, including the function name. The main advantage of the language is that it is actually JSON.
+This mini-language is partially inspired by LISP. A rule is represented by a list of string, including the name of the function. The main advantage of the language is that it is actually JSON, which makes it easy to be serialized.
 
 ### Syntax & Structure
 
 ```
-["some.function_name", "some_arguments"]
+["namespace.Function_Name", "some_arguments", "more_arguments_if_applicable"]
 ```
 
 A rule is usually consist of a function name, and a list of (sometimes optional) arguments. Function names are often namespaced (e.g. `"boolean.And"`, `"condition.Equal"` etc.) and usually only recognized if placed in the first elemnt.
 
-Unless otherwise specified, a rule can be inserted as an argument to another rule, for example a `boolean.And` rule.
+Unless otherwise specified, **a rule can be inserted as an argument to another rule**, for example a `boolean.And` rule.
 
 ```
 ["boolean.And", ["condition.Equal", ["basic.Field", "fieldA"], "X"],
                 ["condition.Equal", ["basic.Field", "fieldB"], "Y"]]
 ```
 
-## Pre-requisite
-
-- Underscore.js is needed
-
 ## Parsing and computing result
 
-In order to parse the rule, just call `ruler.parse`. The result is a function where you can put in a context object in order for it to compute a result.
+In order to parse the rule, just call `ruler.parse`. The result is a function where you can put in a context object in order for it to compute a result. Check `demo.html` from the repository or the hosted version [here](https://coolsilon.com/ruler/demo.html) for live interactive examples.
 
 ```
 rule = ruler.parse(["condition.Equal", ["basic.Field", "fieldA"], "X"])
@@ -35,7 +31,57 @@ context = {"fieldA": "X"}
 rule(context) // should yield true
 ```
 
-## API overview
+## Usage
+
+I am relatively new to modern Javascript development, kindly send a PR to update this section (:
+
+### Pre-requisite
+
+- Iodash.js is needed
+
+### In a Node.js project
+
+Add the library as a dependency (I use yarn myself, but I suppose it is similar for npm user)
+
+```
+yarn add https://github.com/Jeffrey04/ruler
+```
+
+Then in your code, import and use as follows
+
+```
+import ruler from "ruler";
+
+let rule = ruler.parse(["boolean.Tautology"])
+console.log(rule({}))
+```
+
+### Web browser
+
+Use the [es-module-shims](https://github.com/guybedford/es-module-shims) library by [Guy Bedford](https://github.com/guybedford/) to first load the dependencies.
+
+```
+<script defer src="https://unpkg.com/es-module-shims@latest/dist/es-module-shims.js"></script>
+<script type="importmap-shim">
+  {
+    "imports": {
+      "lodash": "https://cdn.jsdelivr.net/npm/lodash-es@4.17.15/lodash.min.js"
+    }
+  }
+</script>
+<script defer type="module-shim" src="path/to/your-script.js"></script>
+```
+
+Import the library in your script as follows
+
+```
+import ruler from "path/to/ruler.js";
+
+let rule = ruler.parse(["boolean.Tautology"])
+console.log(rule({}))
+```
+
+## Ruler API overview
 
 ### Array functions
 
