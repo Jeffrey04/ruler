@@ -2,79 +2,100 @@
 <html>
   <head>
     <title>Ruler Demo</title>
-    <style>
-      .demo,
-      .result {
-        background-color: #eee;
-        padding: 0.5em;
-      }
-    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
   </head>
   <body>
-    <h1>Ruler Demo</h1>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-5">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Ruler Demo</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="https://github.com/Jeffrey04/ruler">Github</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
-    <div class="namespace" data-name="array">
-      <h2>Array functions</h2>
+    <div class="container mb-4">
+      <h2>How to use this library</h2>
 
-      <h3 class="function" data-name="Length">array.Length</h3>
+      <h3 class="mt-3">Pre-requisites</h3>
+
+      <ul>
+        <li>A <strong>rule</strong>, please refer to the <a href="https://github.com/Jeffrey04/ruler">project page</a> on how to construct a rule.</li>
+        <li>A <strong>context</strong> object, where we apply the rule to, pass an empty object if not applicable.</li>
+      </ul>
+
+      <h3 id="evaluator" class="mt-3">Application</h3>
     </div>
 
-    <div class="namespace" data-name="basic">
+    <div class="namespace container mb-4" data-name="array">
+      <h2>Array functions</h3>
+
+      <h3 class="function mt-3" data-name="Length">array.Length</h3>
+    </div>
+
+    <div class="namespace container mb-4" data-name="basic">
       <h2>Basic functions</h2>
 
-      <h3 class="function" data-name="Context">basic.Context</h3>
+      <h3 class="function mt-3" data-name="Context">basic.Context</h3>
 
-      <h3 class="function" data-name="Field">basic.Field</h3>
+      <h3 class="function mt-3" data-name="Field">basic.Field</h3>
 
-      <h3 class="function" data-name="Value">basic.Value</h3>
+      <h3 class="function mt-3" data-name="Value">basic.Value</h3>
     </div>
 
-    <div class="namespace" data-name="boolean">
+    <div class="namespace container mb-4" data-name="boolean">
       <h2>Boolean functions</h2>
 
-      <h3 class="function" data-name="And">boolean.And</h3>
+      <h3 class="function mt-3" data-name="And">boolean.And</h3>
 
-      <h3 class="function" data-name="Contradiction">boolean.Contradiction</h3>
+      <h3 class="function mt-3" data-name="Contradiction">boolean.Contradiction</h3>
 
-      <h3 class="function" data-name="Not">boolean.Not</h3>
+      <h3 class="function mt-3" data-name="Not">boolean.Not</h3>
 
-      <h3 class="function" data-name="Or">boolean.Or</h3>
+      <h3 class="function mt-3" data-name="Or">boolean.Or</h3>
 
-      <h3 class="function" data-name="Tautology">boolean.Tautology</h3>
+      <h3 class="function mt-3" data-name="Tautology">boolean.Tautology</h3>
     </div>
 
-    <div class="namespace" data-name="condition">
+    <div class="namespace container mb-4" data-name="condition">
       <h2>Condition functions</h2>
 
-      <h3 class="function" data-name="Equal">condition.Equal</h3>
+      <h3 class="function mt-3" data-name="Equal">condition.Equal</h3>
 
-      <h3 class="function" data-name="Greater_Than">condition.Greater_Than</h3>
+      <h3 class="function mt-3" data-name="Greater_Than">condition.Greater_Than</h3>
 
-      <h3 class="function" data-name="Greater_Than_Equal">
+      <h3 class="function mt-3" data-name="Greater_Than_Equal">
         condition.Greater_Than_Equal
       </h3>
 
-      <h3 class="function" data-name="In">condition.In</h3>
+      <h3 class="function mt-3" data-name="In">condition.In</h3>
 
-      <h3 class="function" data-name="Is_Null">condition.Is_Null</h3>
+      <h3 class="function mt-3" data-name="Is_Null">condition.Is_Null</h3>
 
-      <h3 class="function" data-name="Is_True">condition.Is_True</h3>
+      <h3 class="function mt-3" data-name="Is_True">condition.Is_True</h3>
 
-      <h3 class="function" data-name="Less_Than">condition.Less_Than</h3>
+      <h3 class="function mt-3" data-name="Less_Than">condition.Less_Than</h3>
 
-      <h3 class="function" data-name="Less_Than_Equal">
+      <h3 class="function mt-3" data-name="Less_Than_Equal">
         condition.Less_Than_Equal
       </h3>
     </div>
 
-    <div class="namespace" data-name="string">
+    <div class="namespace container mb-4" data-name="string">
       <h2>String functions</h2>
 
-      <h3 class="function" data-name="Concat">string.Concat</h3>
+      <h3 class="function mt-3" data-name="Concat">string.Concat</h3>
 
-      <h3 class="function" data-name="Concat_Fields">string.Concat_Fields</h3>
+      <h3 class="function mt-3" data-name="Concat_Fields">string.Concat_Fields</h3>
 
-      <h3 class="function" data-name="Lower">string.Lower</h3>
+      <h3 class="function mt-3" data-name="Lower">string.Lower</h3>
     </div>
 
     <script

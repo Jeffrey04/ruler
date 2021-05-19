@@ -1,302 +1,204 @@
-import "https://code.jquery.com/jquery-2.2.3.min.js";
+import "https://code.jquery.com/jquery-3.6.0.min.js";
 
 import ruler from "./ruler.js";
 
 (function () {
-  var demo = {
+  let evaluator = (rule, context) => {
+    let rule_parsed = ruler.parse(rule);
+
+    return rule_parsed(context);
+  };
+
+  let demo = {
     array: {
       Length: [
-        () => {
-          let context = { list: ["foo", "bar", "baz"] };
-          let rule = ruler.parse(["array.Length", ["basic.Field", "list"]]);
-
-          return rule(context);
+        {
+          rule: ["array.Length", ["basic.Field", "list"]],
+          context: { list: ["foo", "bar", "baz"] },
         },
       ],
     },
     basic: {
       Context: [
-        function () {
-          let context = { sub: { foo: "bar" } };
-          let rule = ruler.parse([
+        {
+          rule: [
             "basic.Context",
             ["basic.Field", "sub"],
             ["basic.Field", "foo"],
-          ]);
-          return rule(context);
+          ],
+          context: { sub: { foo: "bar" } },
         },
       ],
       Field: [
-        function () {
-          let context = { foo: "bar" };
-          let rule = ruler.parse(["basic.Field", "foo"]);
-
-          return rule(context);
+        {
+          rule: ["basic.Field", "foo"],
+          context: { foo: "bar" },
         },
-        function () {
-          let context = { baz: "bar" };
-          let rule = ruler.parse(["basic.Field", "foo", "meow"]);
-
-          return rule(context);
+        {
+          rule: ["basic.Field", "foo", "meow"],
+          context: { baz: "bar" },
         },
       ],
       Value: [
-        function () {
-          let context = { foo: "bar" };
-          let rule = ruler.parse(["basic.Value", "meow"]);
-
-          return rule(context);
+        {
+          rule: ["basic.Value", "meow"],
+          context: { foo: "bar" },
         },
       ],
     },
     boolean: {
       And: [
-        function () {
-          let context = {};
-          let rule = ruler.parse([
-            "boolean.And",
-            ["basic.Value", true],
-            ["basic.Value", false],
-          ]);
-
-          return rule(context);
+        {
+          rule: ["boolean.And", ["basic.Value", true], ["basic.Value", false]],
+          context: {},
         },
       ],
       Contradiction: [
-        function () {
-          let context = {};
-          let rule = ruler.parse(["boolean.Contradiction"]);
-
-          return rule(context);
+        {
+          rule: ["boolean.Contradiction"],
+          context: {},
         },
       ],
       Not: [
-        function () {
-          let context = {};
-          let rule = ruler.parse(["boolean.Not", ["basic.Value", false]]);
-
-          return rule(context);
+        {
+          rule: ["boolean.Not", ["basic.Value", false]],
+          context: {},
         },
       ],
       Or: [
-        function () {
-          let context = {};
-          let rule = ruler.parse([
-            "boolean.Or",
-            ["basic.Value", true],
-            ["basic.Value", false],
-          ]);
-
-          return rule(context);
+        {
+          rule: ["boolean.Or", ["basic.Value", true], ["basic.Value", false]],
+          context: {},
         },
       ],
       Tautology: [
-        function () {
-          let context = {};
-          let rule = ruler.parse(["boolean.Tautology"]);
-
-          return rule(context);
+        {
+          rule: ["boolean.Tautology"],
+          context: {},
         },
       ],
     },
     condition: {
       Equal: [
-        function () {
-          let context = { foo: "bar" };
-          let rule = ruler.parse([
-            "condition.Equal",
-            ["basic.Field", "foo"],
-            "bar",
-          ]);
-
-          return rule(context);
+        {
+          rule: ["condition.Equal", ["basic.Field", "foo"], "bar"],
+          context: { foo: "bar" },
         },
-        function () {
-          let context = { foo: "bar" };
-          let rule = ruler.parse([
-            "condition.Equal",
-            "bar",
-            ["basic.Field", "foo"],
-          ]);
-
-          return rule(context);
+        {
+          rule: ["condition.Equal", "bar", ["basic.Field", "foo"]],
+          context: { foo: "bar" },
         },
-        function () {
-          let context = {};
-          let rule = ruler.parse(["condition.Equal", "bar", "bar"]);
-
-          return rule(context);
+        {
+          rule: ["condition.Equal", "bar", "bar"],
+          context: {},
         },
       ],
       Greater_Than: [
-        function () {
-          let context = {};
-          let rule = ruler.parse([
-            "condition.Greater_Than",
-            1,
-            ["basic.Value", 2],
-          ]);
-
-          return rule(context);
+        {
+          rule: ["condition.Greater_Than", 1, ["basic.Value", 2]],
+          context: {},
         },
-        function () {
-          let context = {};
-          let rule = ruler.parse([
-            "condition.Greater_Than",
-            ["basic.Value", 2],
-            1,
-          ]);
-
-          return rule(context);
+        {
+          rule: ["condition.Greater_Than", ["basic.Value", 2], 1],
+          context: {},
         },
       ],
       Greater_Than_Equal: [
-        function () {
-          let context = {};
-          let rule = ruler.parse(["condition.Greater_Than_Equal", 1, 1]);
-
-          return rule(context);
+        {
+          rule: ["condition.Greater_Than_Equal", 1, 1],
+          context: {},
         },
       ],
       In: [
-        function () {
-          let context = { foo: "bar" };
-          let rule = ruler.parse([
-            "condition.In",
-            ["basic.Field", "foo"],
-            ["bar", "baz"],
-          ]);
-
-          return rule(context);
+        {
+          rule: ["condition.In", ["basic.Field", "foo"], ["bar", "baz"]],
+          context: { foo: "bar" },
         },
-        function () {
-          let context = {};
-          let rule = ruler.parse(["condition.In", "bar", ["bar", "baz"]]);
-
-          return rule(context);
+        {
+          rule: ["condition.In", "bar", ["bar", "baz"]],
+          context: {},
         },
       ],
       Is_Null: [
-        function () {
-          let context = {};
-          let rule = ruler.parse(["condition.Is_Null", null]);
-
-          return rule(context);
+        {
+          rule: ["condition.Is_Null", null],
+          context: {},
         },
-        function () {
-          let context = {};
-          let rule = ruler.parse(["condition.Is_Null", ["basic.Value", null]]);
-
-          return rule(context);
+        {
+          rule: ["condition.Is_Null", ["basic.Value", null]],
+          context: {},
         },
       ],
       Is_True: [
-        function () {
-          let context = {};
-          let rule = ruler.parse(["condition.Is_True", true]);
-
-          return rule(context);
+        {
+          rule: ["condition.Is_True", true],
+          context: {},
         },
-        function () {
-          let context = {};
-          let rule = ruler.parse(["condition.Is_True", ["boolean.Tautology"]]);
-
-          return rule(context);
+        {
+          rule: ["condition.Is_True", ["boolean.Tautology"]],
+          context: {},
         },
       ],
       Less_Than: [
-        function () {
-          let context = {};
-          let rule = ruler.parse([
-            "condition.Less_Than",
-            1,
-            ["basic.Value", 2],
-          ]);
-
-          return rule(context);
+        {
+          rule: ["condition.Less_Than", 1, ["basic.Value", 2]],
+          context: {},
         },
-        function () {
-          let context = {};
-          let rule = ruler.parse([
-            "condition.Less_Than",
-            ["basic.Value", 2],
-            1,
-          ]);
-
-          return rule(context);
+        {
+          rule: ["condition.Less_Than", ["basic.Value", 2], 1],
+          context: {},
         },
       ],
       Less_Than_Equal: [
-        function () {
-          let context = {};
-          let rule = ruler.parse(["condition.Less_Than_Equal", 1, 1]);
-
-          return rule(context);
+        {
+          rule: ["condition.Less_Than_Equal", 1, 1],
+          context: {},
         },
       ],
     },
     string: {
       Concat: [
-        function () {
-          let context = { foo: "hello", bar: "world" };
-          let rule = ruler.parse([
+        {
+          rule: [
             "string.Concat",
             " ",
             ["basic.Field", "foo"],
             ["basic.Field", "bar"],
-          ]);
-
-          return rule(context);
+          ],
+          context: { foo: "hello", bar: "world" },
         },
-        function () {
-          let context = { link: " ", bar: "world" };
-          let rule = ruler.parse([
+        {
+          rule: [
             "string.Concat",
             ["basic.Field", "link"],
             "hello",
             ["basic.Field", "bar"],
-          ]);
-
-          return rule(context);
+          ],
+          context: { link: " ", bar: "world" },
         },
-        function () {
-          let context = {};
-          let rule = ruler.parse(["string.Concat", " ", "hello", "world"]);
-
-          return rule(context);
+        {
+          rule: ["string.Concat", " ", "hello", "world"],
+          context: {},
         },
       ],
       Concat_Fields: [
-        function () {
-          let context = { foo: "hello", bar: "world" };
-          let rule = ruler.parse(["string.Concat_Fields", " ", "foo", "bar"]);
-
-          return rule(context);
+        {
+          rule: ["string.Concat_Fields", " ", "foo", "bar"],
+          context: { foo: "hello", bar: "world" },
         },
-        function () {
-          let context = { link: " ", foo: "hello", bar: "world" };
-          let rule = ruler.parse([
-            "string.Concat_Fields",
-            ["basic.Field", "link"],
-            "foo",
-            "bar",
-          ]);
-
-          return rule(context);
+        {
+          rule: ["string.Concat_Fields", ["basic.Field", "link"], "foo", "bar"],
+          context: { link: " ", foo: "hello", bar: "world" },
         },
       ],
       Lower: [
-        function () {
-          let context = { foo: "HELLO" };
-          let rule = ruler.parse(["string.Lower", ["basic.Field", "foo"]]);
-
-          return rule(context);
+        {
+          rule: ["string.Lower", ["basic.Field", "foo"]],
+          context: { foo: "HELLO" },
         },
-        function () {
-          let context = {};
-          let rule = ruler.parse(["string.Lower", "HELLO"]);
-
-          return rule(context);
+        {
+          rule: ["string.Lower", "HELLO"],
+          context: {},
         },
       ],
     },
@@ -305,36 +207,69 @@ import ruler from "./ruler.js";
   function widget_create_demo(func) {
     return $(
       $.parseHTML(
-        '<pre class="demo"><code>' + func.toString() + "</code></pre>"
+        '<pre class="bg-light p-2"><code>' + func.toString() + "</code></pre>"
+      )
+    );
+  }
+
+  function widget_create_data(data) {
+    return $(
+      $.parseHTML(
+        '<pre class="bg-light p-2"><code>' +
+          JSON.stringify(data) +
+          "</code></pre>"
       )
     );
   }
 
   function widget_create_result() {
-    return $($.parseHTML('<pre class="result"><code></code></pre>'));
+    return $(
+      $.parseHTML(
+        '<pre class="bg-light p-2"><code>Press the "Evaluate" button to show result</code></pre>'
+      )
+    );
   }
 
-  function widget_create_executor(func, result) {
-    return $($.parseHTML("<button>Execute</button")).click(function () {
-      $("code", result).text("Result: " + func());
-    });
+  function widget_create_executor(example, result) {
+    return $(
+      $.parseHTML('<button class="btn btn-outline-primary">Evaluate</button')
+    ).click(() =>
+      $("code", result).text(
+        "Result: " + evaluator(example.rule, example.context)
+      )
+    );
   }
 
   function page_initialize() {
+    $("#evaluator").after(
+      $($.parseHTML("<div></div>")).append(widget_create_demo(evaluator))
+    );
+
     $(".namespace").each(function (_, namespace) {
       $(".function", namespace).each(function (_, name) {
-        let functions = demo[$(namespace).data("name")][$(name).data("name")];
+        let functions =
+          demo?.[$(namespace).data("name")]?.[$(name).data("name")];
 
         if (functions) {
-          $.each(functions, function (_, func) {
+          let list = $.map(functions, (example) => {
             let result = widget_create_result();
 
-            $($.parseHTML("<div></div>"))
-              .append(widget_create_demo(func))
-              .append(widget_create_executor(func, result))
-              .append(result)
-              .insertAfter(name);
+            return $($.parseHTML('<li class="card mb-3"></li>')).append(
+              $($.parseHTML('<div class="card-body"></div>'))
+                .append($.parseHTML("<h4>Rule</h4>"))
+                .append(widget_create_data(example.rule))
+                .append($.parseHTML("<h4>Context</h4>"))
+                .append(widget_create_data(example.context))
+                .append($.parseHTML("<h4>Result</h4>"))
+                .append(result)
+                .append(widget_create_executor(example, result))
+            );
           });
+
+          $(document.createElement("ul"))
+            .addClass("p-0")
+            .append(list)
+            .insertAfter(name);
         }
       });
     });
