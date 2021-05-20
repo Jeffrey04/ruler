@@ -44,13 +44,13 @@ I am relatively new to modern Javascript development, kindly send a PR to update
 Add the library as a dependency (I use yarn myself, but I suppose it is similar for npm user)
 
 ```
-yarn add https://github.com/Jeffrey04/ruler
+yarn add @jeffrey04/ruler
 ```
 
 Then in your code, import and use as follows
 
 ```
-import ruler from "ruler";
+import ruler from "@jeffrey04/ruler";
 
 let rule = ruler.parse(["boolean.Tautology"])
 console.log(rule({}))
